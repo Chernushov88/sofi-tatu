@@ -2,15 +2,17 @@
   <q-page>
     <div class="profile-header full-width column flex-center">
       <div class="avatar-wrapper my-6 relative-position">
-        <q-img  src="~/assets/logo.png"
-                :style="avatarStyle"
-                class="w-48 border-4 rounded-full border-black-700"
-        >
-        </q-img>
-        <q-div
-          class="w-48 border-4 rounded-full border-black-700">
-          <img src="~/assets/logo.png" alt="" :style="avatarStyle">
-        </q-div>
+        <q-img
+          class="w-48 border-4 rounded-full border-black-700 display-block"
+          src="~/assets/logo.png"
+          style="width: 200px"
+          :style="avatarStyle"
+        />
+
+<!--        <div-->
+<!--          class="w-48 border-4 rounded-full border-black-700">-->
+<!--          <img src="~/assets/logo.png" alt="" :style="avatarStyle">-->
+<!--        </div>-->
 
         <q-btn
           icon="photo"
@@ -62,7 +64,7 @@
 <script>
 export default {
   data: () => ({
-    scrollPosition: 0,
+    scrollPosition: 1,
     formCommon: {
       firstName: '',
       lastName: '',
@@ -74,16 +76,16 @@ export default {
   }),
   methods: {
     scrollHandler(info) {
-      console.log('info', info);
-      this.scrollPosition = info.position.top;
+      // console.log('info', info);
+      this.scrollPosition = info.position;
     },
   },
   computed: {
     avatarStyle() {
-      const maxWidth = 200 - this.scrollPosition;
+      let maxWidth = 200 - this.scrollPosition;
       return {
         maxWidth: maxWidth + 'px',
-        marginTop: Math.min(this.scrollPosition, 200) + 'px',
+        marginTop: Math.min(this.scrollPosition, 199) + 'px',
         opacity: 1 - this.scrollPosition / 165,
       };
     },
